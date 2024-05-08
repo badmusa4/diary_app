@@ -3,7 +3,7 @@ from PIL import  ImageTk
 from tkinter import messagebox
 from tkinter import font
 import mysql.connector
-import  re
+# import  re
 
 def clear():
     first_name.delete(0, END)

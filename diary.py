@@ -15,6 +15,7 @@ cursor.execute('CREATE TABLE IF NOT EXISTS Diary (id INT AUTO_INCREMENT PRIMARY 
 
 def add_entry():
     entry_content = entry_story_text.get("1.0", END)
+    entry_story_text.delete("1.0", END)
     entry_date = datetime.datetime.now()
     entry_topic = entry_topic_entry.get()  # Get the topic from the entry widget
 
@@ -137,24 +138,24 @@ diary.geometry('921x600+50+50')
 diary.resizable(False, False)
 
 bg = Image.open('diary_bg.jpg')
-bg = bg.resize((921, 600), Image.LANCZOS)
+bg = bg.resize((921, 600), None)
 bg = ImageTk.PhotoImage(bg)
 bglabel = Label(diary, image=bg)
 bglabel.place(relwidth=1, relheight=1)
 
 # Create widgets for your diary interface
-entry_topic_label = Label(diary, text='Topic:')
+entry_topic_label = Label(diary, text='Topic:', bg= 'Azure', bd= 3)
 entry_topic_label.place(x=50, y=50)
 entry_topic_entry = Entry(diary, width=60)
 entry_topic_entry.place(x=100, y=50)
 
-entry_story_label = Label(diary, text='Story:')
+entry_story_label = Label(diary, text='Story:', bg= 'Azure', bd= 3)
 entry_story_label.place(x=50, y=100)
-entry_story_text = Text(diary, height=10, width=80)
+entry_story_text = Text(diary, height=10, width=75, bg= 'Azure')
 entry_story_text.place(x=100, y=120)
 
 add_button = Button(diary, width=20, text='Add Entry', command=add_entry, pady=5, bg='Azure3', cursor='hand2', bd=2)
-add_button.place(x=100, y=300)
+add_button.place(x=720, y=120)
 
 entry_table = ttk.Treeview(diary, columns=('ID', 'Topic', 'Date'), show='headings', height=10)
 entry_table.heading('ID', text='ID')
@@ -165,7 +166,7 @@ entry_table.place(x=100, y=350)
 display_button = Button(diary, text='Display Entries', command=display_entries, width=20, bg='Azure3', cursor='hand2', bd=3)
 display_button.place(x=720, y=350)
 
-manage_button = Button(diary, text="Manage Entries", command=open_management_window)
+manage_button = Button(diary, text="Manage Entries", command=open_management_window, width=20, bg='Azure3', cursor='hand2', bd=3)
 manage_button.place(x=720, y=400)
 
 
